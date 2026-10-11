@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>鴻昌工程 · 工務通</title>
+<title>示範工程行 · 工務通</title>
 <style>
   :root{
     --orange:#F97316; --orange-d:#EA580C; --slate:#0F172A; --slate-2:#1E293B;
@@ -165,8 +165,8 @@
 <div id="app">
   <header>
     <div class="brand">
-      <div class="logo">鴻</div>
-      <div><h1>鴻昌工程 · 工務通</h1><p id="hello">早安，王志明 師傅</p></div>
+      <div class="logo">示</div>
+      <div><h1>示範工程行 · 工務通</h1><p id="hello">早安，員工 A 師傅</p></div>
     </div>
     <div class="hd-date"><b id="hd-d">--</b><span id="hd-w">--</span></div>
   </header>
@@ -210,7 +210,7 @@
     <!-- ============ 我的 ============ -->
     <section class="page" id="p-me">
       <div class="card">
-        <div class="prof"><div class="av">王</div><div><h2>王志明</h2><p>工地主任 · 工號 A-1024</p></div></div>
+        <div class="prof"><div class="av">A</div><div><h2>員工 A</h2><p>工地主任 · 示範工號 DEMO-001</p></div></div>
       </div>
       <div class="sec-title">本月統計</div>
       <div class="stat-grid">
@@ -223,7 +223,7 @@
         <button class="btn btn-ghost" style="border:none;border-radius:0;text-align:left;padding:15px 18px" onclick="toast('示範用，無實際功能')">🔔 通知設定</button>
         <button class="btn btn-ghost" style="border:none;border-radius:0;text-align:left;padding:15px 18px;color:var(--red)" onclick="resetDemo()">🗑️ 清除示範資料</button>
       </div>
-      <p style="text-align:center;font-size:11px;color:var(--gray-l);margin-top:18px">工務通 v0.1 示範版 · 資料存於本機瀏覽器</p>
+      <p style="text-align:center;font-size:11px;color:var(--gray-l);margin-top:18px">工務通 v0.1 · 預載資料皆為虛構示範 · 資料存於本機瀏覽器</p>
     </section>
   </main>
 
@@ -252,21 +252,21 @@ const DB={
   set:(k,v)=>localStorage.setItem('wt_'+k,JSON.stringify(v))
 };
 const todayKey=()=>new Date().toISOString().slice(0,10);
-let GPS='台北市信義區 · 松勤街20號工地';
+let GPS='示範路 1 號 · 示範座標 0.0000, 0.0000（非實際定位）';
 
 function seed(){
   if(!DB.get('tasks',null)){
     DB.set('tasks',[
-      {id:1,site:'信義松勤街 — 3F 鋼筋綁紮',who:'李',whoN:'李大同',hr:'8h',status:'doing',prog:45},
-      {id:2,site:'內湖科技園 — 水電配管',who:'陳',whoN:'陳建宏',hr:'6h',status:'todo',prog:0},
-      {id:3,site:'板橋江翠 — 模板拆除',who:'王',whoN:'王志明',hr:'4h',status:'todo',prog:0},
-      {id:4,site:'信義松勤街 — 1F 防水層',who:'張',whoN:'張文良',hr:'5h',status:'done',prog:100}
+      {id:1,site:'示範路 1 號 — 3F 鋼筋綁紮',who:'B',whoN:'員工 B',hr:'8h',status:'doing',prog:45},
+      {id:2,site:'示範路 2 號 — 水電配管',who:'C',whoN:'員工 C',hr:'6h',status:'todo',prog:0},
+      {id:3,site:'示範路 3 號 — 模板拆除',who:'A',whoN:'員工 A',hr:'4h',status:'todo',prog:0},
+      {id:4,site:'示範路 1 號 — 1F 防水層',who:'D',whoN:'員工 D',hr:'5h',status:'done',prog:100}
     ]);
   }
   if(!DB.get('reports',null)){
     DB.set('reports',[
-      {id:1,site:'信義松勤街 — 1F 防水層',time:'今天 09:42',prog:100,text:'防水層施作完成，已通過自主檢查，明日可進行保護層。',who:'張文良'},
-      {id:2,site:'信義松勤街 — 3F 鋼筋綁紮',time:'今天 08:15',prog:45,text:'東側鋼筋已綁紮約一半，鋼筋進場數量無誤，續做西側。',who:'李大同'}
+      {id:1,site:'示範路 1 號 — 1F 防水層',time:'今天 09:42',prog:100,text:'防水層施作完成，已通過自主檢查，明日可進行保護層。',who:'員工 D'},
+      {id:2,site:'示範路 1 號 — 3F 鋼筋綁紮',time:'今天 08:15',prog:45,text:'東側鋼筋已綁紮約一半，鋼筋進場數量無誤，續做西側。',who:'員工 B'}
     ]);
   }
 }
@@ -291,7 +291,7 @@ function tick(){
   document.getElementById('hd-d').textContent=`${n.getMonth()+1}/${n.getDate()}`;
   document.getElementById('hd-w').textContent='星期'+W[n.getDay()];
   const h=n.getHours();
-  document.getElementById('hello').textContent=(h<12?'早安':h<18?'午安':'晚安')+'，王志明 師傅';
+  document.getElementById('hello').textContent=(h<12?'早安':h<18?'午安':'晚安')+'，員工 A 師傅';
 }
 
 /* ---------- GPS ---------- */
@@ -381,8 +381,8 @@ function siteOptions(){return DB.get('tasks',[]).map(t=>`<option>${t.site}</opti
 function sheetTask(){
   document.getElementById('sheet').innerHTML=`
     <h2>新增派工 <span class="x" onclick="closeSheet()">×</span></h2>
-    <div class="field"><label>工地 / 工項</label><input id="f-site" placeholder="例：信義松勤街 — 5F 灌漿"></div>
-    <div class="field"><label>指派給</label><select id="f-who"><option>李大同</option><option>陳建宏</option><option>王志明</option><option>張文良</option></select></div>
+    <div class="field"><label>工地 / 工項</label><input id="f-site" placeholder="例：示範路 1 號 — 5F 灌漿"></div>
+    <div class="field"><label>指派給</label><select id="f-who"><option>員工 B</option><option>員工 C</option><option>員工 A</option><option>員工 D</option></select></div>
     <div class="field"><label>預計工時</label><select id="f-hr"><option>2h</option><option>4h</option><option selected>6h</option><option>8h</option></select></div>
     <button class="btn btn-in" onclick="addTask()">確認派工</button>`;
 }
@@ -418,7 +418,7 @@ function addReport(){
   const rs=DB.get('reports',[]);
   rs.unshift({id:Date.now(),site:document.getElementById('r-site').value,
     time:'今天 '+new Date().toTimeString().slice(0,5),prog:+document.getElementById('r-prog').value,
-    text:t,who:'王志明',img:photoData});
+    text:t,who:'員工 A',img:photoData});
   DB.set('reports',rs);renderReports();renderStats();closeSheet();toast('✅ 回報已送出');
 }
 

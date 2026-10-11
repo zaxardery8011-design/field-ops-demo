@@ -1,6 +1,6 @@
 # field-ops-demo
 
-給想看外勤介面流程的人使用的單檔示範：上下班打卡、工地派工與工作回報。HTML、CSS、JavaScript 都在 `index.html`；不需要套件安裝或 build。
+給想看外勤介面流程的人使用的單檔示範：上下班打卡、工地派工與工作回報。HTML、CSS、JavaScript 都在 `index.html`；不需要套件安裝或 build。頁面資料皆為虛構示範。
 
 ## 第一次使用
 下載或 clone 本 repo，以瀏覽器開啟 `index.html`。若已有 Python，也可在此資料夾執行：
